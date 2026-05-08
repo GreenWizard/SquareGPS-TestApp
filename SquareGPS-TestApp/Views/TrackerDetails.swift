@@ -56,6 +56,8 @@ struct TrackerDetails: View {
 extension View {
     
     func onContentSizeChange(_ onChange: @escaping (CGSize) -> Void) -> some View {
+        // Used to size sheet detents to content height.
+        // (SwiftUI doesn't provide a direct "intrinsic height" API for sheets.)
         self.overlay {
             GeometryReader { geometry in
                 Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)

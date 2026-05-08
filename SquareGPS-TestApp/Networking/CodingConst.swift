@@ -28,6 +28,8 @@ enum CodingConst {
     static let dateDecoding: (any Decoder) throws -> Date = { decoder in
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
+        // API date formats may vary (full datetime, date-only, fractional seconds).
+        // Try a small set of ISO8601 variants before failing.
         for formatter in formatters {
             if let date = formatter.date(from: string) { return date }
         }

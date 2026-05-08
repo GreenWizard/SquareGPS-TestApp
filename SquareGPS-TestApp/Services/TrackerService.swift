@@ -54,7 +54,8 @@ final class TrackerServiceImpl: TrackerService {
     
     func reloadTrackers() async throws {
         guard !isRefreshInProgress else {
-            // If refresh in progress, wait until last one is finished
+            // Coalesce concurrent refresh calls: if a refresh is already running,
+            // await its completion and return the same outcome (success/error).
             return try await withCheckedThrowingContinuation { continuation in
                 var cancellable: AnyCancellable?
                 cancellable = _isRefreshInProgress.projectedValue
