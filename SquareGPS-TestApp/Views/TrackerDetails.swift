@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import MapKit
 
 struct TrackerDetails: View {
     
@@ -22,7 +23,7 @@ struct TrackerDetails: View {
         return data
     }
     
-    @State var contentHeight: CGFloat = 1
+    @State var mapPosition: MapCameraPosition = .automatic
     
     var body: some View {
         let mainData = mainData
@@ -37,14 +38,34 @@ struct TrackerDetails: View {
                     Text(mainData[index].1)
                 }
             }
+            if let state = tracker.state {
+                Map(position: $mapPosition) {
+                    Marker(
+                        tracker.label,
+                        coordinate: .init(
+                            latitude: state.lat,
+                            longitude: state.lng
+                        )
+                    )
+                }
+                .padding(.top)
+            }
         }
         .multilineTextAlignment(.leading)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
         .background(.white)
         .navigationTitle("Tracker Details")
-        .onContentSizeChange { contentHeight = $0.height }
-        .presentationDetents([.height(contentHeight)])
+        .presentationDetents([.fraction(0.6)])
+        .onAppear {
+            guard let state = tracker.state else { return }
+            mapPosition = .region(
+                MKCoordinateRegion(
+                    center: .init(latitude: state.lat, longitude: state.lng),
+                    span: .init(latitudeDelta: 1, longitudeDelta: 1)
+                )
+            )
+        }
     }
 }
 

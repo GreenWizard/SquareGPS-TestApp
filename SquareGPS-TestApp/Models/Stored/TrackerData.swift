@@ -51,7 +51,8 @@ final class TrackerData: Sendable {
             label: "Some awesome tracker",
             groupId: id,
             source: .init(model: "Some model"),
-            phone: "+0 (000) 000-0000"
+            phone: "+0 (000) 000-0000",
+            state: .init(lat: 10.0, lng: 20.0, heading: 100)
         )
     }
 }
