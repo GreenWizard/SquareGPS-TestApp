@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C8882B8D2FACB59F00EE379D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C8882B8C2FACB59F00EE379D /* KeychainSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		C8882B702FAB971400EE379D /* SquareGPS-TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SquareGPS-TestApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8882B8D2FACB59F00EE379D /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "SquareGPS-TestApp";
 			packageProductDependencies = (
+				C8882B8C2FACB59F00EE379D /* KeychainSwift */,
 			);
 			productName = "SquareGPS-TestApp";
 			productReference = C8882B702FAB971400EE379D /* SquareGPS-TestApp.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = C8882B672FAB971400EE379D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C8882B8B2FACB59F00EE379D /* XCRemoteSwiftPackageReference "keychain-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C8882B712FAB971400EE379D /* Products */;
 			projectDirPath = "";
@@ -332,6 +341,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C8882B8B2FACB59F00EE379D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C8882B8C2FACB59F00EE379D /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8882B8B2FACB59F00EE379D /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C8882B682FAB971400EE379D /* Project object */;
 }
