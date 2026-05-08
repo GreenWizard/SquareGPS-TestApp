@@ -36,7 +36,7 @@ struct AuthScreen<T: Services>: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("User name")
+            Text("Username")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.leading, 4)

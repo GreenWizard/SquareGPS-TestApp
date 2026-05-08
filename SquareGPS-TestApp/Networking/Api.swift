@@ -29,21 +29,21 @@ struct ApiDecorator: Api {
 struct ApiImpl: Api {
     
     func post<Body: Codable, Output: Codable>(endpoint: ApiEndpoint, body: Body) async throws -> Output {
-        var urlReuqest = URLRequest(url: endpoint.url)
-        urlReuqest.httpMethod = "POST"
-        urlReuqest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlReuqest.httpBody = try CodingConst.encoder.encode(body)
-        print("[API Request] STARTED: \(urlReuqest.url?.absoluteString ?? "")")
+        var urlRequest = URLRequest(url: endpoint.url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try CodingConst.encoder.encode(body)
+        print("[API Request] STARTED: \(urlRequest.url?.absoluteString ?? "")")
         do {
-            let (data, response) = try await URLSession.shared.data(for: urlReuqest)
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
             guard let response = response as? HTTPURLResponse else {
                 throw ApiError.unsupportedResponseType
             }
-            print("[API Request] DATA RECIEVED: \(urlReuqest.url?.absoluteString ?? ""), output: \(String(data: data, encoding: .utf8) ?? "")")
+            print("[API Request] DATA RECEIVED: \(urlRequest.url?.absoluteString ?? ""), output: \(String(data: data, encoding: .utf8) ?? "")")
             switch response.statusCode {
             case (200..<300):
                 let output = try CodingConst.decoder.decode(Output.self, from: data)
-                print("[API Request] SUCCEED: \(urlReuqest.url?.absoluteString ?? ""), output: \(output)")
+                print("[API Request] SUCCEEDED: \(urlRequest.url?.absoluteString ?? ""), output: \(output)")
                 return output
             default:
                 throw ApiError.httpError(
@@ -52,7 +52,7 @@ struct ApiImpl: Api {
                 )
             }
         } catch {
-            print("[API Request] FAILED: \(urlReuqest.url?.absoluteString ?? ""), error: \(error.localizedDescription)")
+            print("[API Request] FAILED: \(urlRequest.url?.absoluteString ?? ""), error: \(error.localizedDescription)")
             throw error
         }
     }

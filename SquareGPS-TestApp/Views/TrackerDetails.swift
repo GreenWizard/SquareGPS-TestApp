@@ -15,8 +15,8 @@ struct TrackerDetails: View {
             data.append(("Phone:", "\(phone)"))
         }
         if let state = tracker.state {
-            data.append(("Lattitude:", "\(state.lat)"))
-            data.append(("Longditute:", "\(state.lng)"))
+            data.append(("Latitude:", "\(state.lat)"))
+            data.append(("Longitude:", "\(state.lng)"))
             data.append(("Heading:", "\(state.heading)"))
         }
         return data
