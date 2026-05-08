@@ -3,7 +3,7 @@ import SwiftData
 
 struct TrackerScreen<T: Services>: View {
     
-    @State var selectedTracker: Tracker?
+    @State var selectedTracker: TrackerData?
     @State var isAuthPresented = false
     
     @State var refreshError: Error?

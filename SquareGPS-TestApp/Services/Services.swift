@@ -23,7 +23,7 @@ struct ServicesImpl: Services {
     
     init() {
         let schema = Schema([
-            Tracker.self,
+            TrackerData.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         let modelContainer: ModelContainer

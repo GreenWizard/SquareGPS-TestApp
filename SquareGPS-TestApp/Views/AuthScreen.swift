@@ -14,7 +14,7 @@ struct AuthScreen<T: Services>: View {
     @FocusState var isPasswordFocused: Bool
     
     @State var isAuthInProgress = false
-    @State var contentHeight: CGFloat = 0
+    @State var contentHeight: CGFloat = 1
     
     @State var error: (any Error)?
     @State var isErrorAlertPresented = false

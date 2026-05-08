@@ -3,14 +3,7 @@ import SwiftData
 
 struct TrackerDetails: View {
     
-    var tracker: Tracker
-    
-    var tagBindings: String? {
-        guard !tracker.tagBindings.isEmpty else { return nil }
-        return tracker.tagBindings.reduce("") { result, binding in
-            result.isEmpty ? "\(binding)" : "\(result); \(binding)"
-        }
-    }
+    var tracker: TrackerData
     
     var mainData: [(String, String)] {
         var data = [
@@ -18,16 +11,18 @@ struct TrackerDetails: View {
             ("Model", "\(tracker.source.model)"),
             ("Group ID:", "\(tracker.groupId)"),
         ]
-        if let tagBindings {
-            data.append(("Tag Bindings:", "\(tagBindings)"))
-        }
         if let phone = tracker.phone {
             data.append(("Phone:", "\(phone)"))
+        }
+        if let state = tracker.state {
+            data.append(("Lattitude:", "\(state.lat)"))
+            data.append(("Longditute:", "\(state.lng)"))
+            data.append(("Heading:", "\(state.heading)"))
         }
         return data
     }
     
-    @State var contentHeight: CGFloat = 0
+    @State var contentHeight: CGFloat = 1
     
     var body: some View {
         let mainData = mainData
