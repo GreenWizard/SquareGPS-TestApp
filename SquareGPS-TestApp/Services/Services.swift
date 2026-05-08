@@ -33,8 +33,8 @@ struct ServicesImpl: Services {
             fatalError("Could not create ModelContainer: \(error)")
         }
         
-        // `ApiDecorator` must call `authService.reset()` on HTTP 401.
-        // The decorator is created before `authService` exists; assign `authService` immediately afterward.
+        // On HTTP 401, `ApiDecorator` calls `authService.reset()`.
+        // The closure references `authService` before it is initialized, so declare it as `AuthServiceImpl!` and assign it immediately after creating `api`.
         var authService: AuthServiceImpl!
         let api = ApiDecorator(
             onPostError: { error in

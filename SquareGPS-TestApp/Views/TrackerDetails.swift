@@ -9,7 +9,7 @@ struct TrackerDetails: View {
     var mainData: [(String, String)] {
         var data = [
             ("ID:", "\(tracker.id)"),
-            ("Model", "\(tracker.source.model)"),
+            ("Model:", "\(tracker.source.model)"),
             ("Group ID:", "\(tracker.groupId)"),
         ]
         if let phone = tracker.phone {

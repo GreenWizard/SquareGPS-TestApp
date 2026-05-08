@@ -48,7 +48,7 @@ struct TrackerScreen<T: Services>: View {
         }
         .listStyle(.insetGrouped)
         .refreshable { await refresh() }
-        .navigationTitle("Tracker list")
+        .navigationTitle("Tracker List")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             if authService.authHash == nil {

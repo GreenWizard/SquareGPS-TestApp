@@ -7,11 +7,13 @@
 * Build or run the app.
 
 ### Features
-* The application consists of a tracker list, an authentication sheet, and a tracker-details sheet.
+* The application consists of a tracker list, an authentication sheet, and a tracker details sheet.
+* The tracker details sheet includes a map when position data is available.
 * All data is stored using SwiftData. Local data is always available.
 * The tracker list supports pull-to-refresh.
 * Authentication-related data is stored in the Keychain.
-* Automatic sign-off when any request returns HTTP 401. Local data remains available.
+* Users are signed out automatically when any request returns HTTP 401. Locally cached data remains available.
+* The app continuously polls for tracker positions.
 
 ### Technical limitations
 
@@ -22,5 +24,5 @@
 
 ### Notes (non-obvious behavior)
 
-* **Refresh coalescing**: `TrackerServiceImpl.reloadTrackers()` collapses concurrent refresh calls: if a refresh is already running, later calls await its completion and return the same success/error.
+* **Refresh coalescing**: `TrackerServiceImpl.reloadTrackers()` collapses concurrent refresh calls: if a refresh is already running, later calls await its completion and receive the same outcome (success or failure).
 * **Date parsing**: JSON dates are decoded using a small set of ISO8601 variants (with/without fractional seconds, date-only).

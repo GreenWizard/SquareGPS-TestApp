@@ -75,7 +75,7 @@ struct AuthScreen<T: Services>: View {
         .background(.white)
         .navigationTitle("Sign In")
         .alert(
-            error?.localizedDescription ?? "Unknown Error",
+            error?.localizedDescription ?? "Unknown error",
             isPresented: $isErrorAlertPresented
         ) {
             Button("OK") { isErrorAlertPresented = false }
